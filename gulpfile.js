@@ -6,6 +6,8 @@ var usemin = require("gulp-usemin");
 var templateCache = require("gulp-angular-templatecache");
 var sass = require("gulp-sass");
 var minifyCss = require("gulp-minify-css");
+var eslint = require('gulp-eslint');
+
 
 gulp.task("connect:dev", function () {
   connect.server({
@@ -65,6 +67,13 @@ gulp.task("test", function () {
     });
 });
 
+gulp.task('lint', function () {
+  return gulp.src(['js/**/*.js'])
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failOnError());
+});
+
 gulp.task("usemin", function () {
   return gulp.src("./app/index.html")
     .pipe(usemin({
@@ -88,5 +97,5 @@ gulp.task("assets", function () {
     .pipe(gulp.dest("dist/assets"));
 });
 
-gulp.task("default", ["sass", "templates", "connect:dev", "watch"]);
+gulp.task("default", ["lint", "sass", "templates", "connect:dev", "watch"]);
 gulp.task("dist", ["assets", "sass", "templates", "usemin", "connect:dist"]);
