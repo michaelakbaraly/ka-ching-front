@@ -1,12 +1,16 @@
 (function () {
 
-  var app = angular.module("kaching", ["ui.router", "templates"]);
+  var app = angular.module("kaching", [
+    "kaching.login", "ui.router", "templates"]);
 
   app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/");
     $stateProvider
       .state("homepage", {
-        url: "/"
+        url: "/",
+        templateProvider: function($templateCache){
+          return $templateCache.get('homepage/homepage.tpl.html');
+        }
       })
       .state("login", {
         url: "/login",

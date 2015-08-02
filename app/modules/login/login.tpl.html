@@ -1,15 +1,24 @@
-<div id="login">
-  <form>
+<div id="login" ng-controller="LoginController as vm">
+  <form name="loginForm" novalidate ng-submit="submit(vm.credentials)">
     <div class="form-group">
       <label>
         Login
       </label>
-      <input class="form-control" type="text">
+      <input
+        name="login"
+        class="form-control"
+        type="text" ng-model="vm.credentials.login"
+        required/>
       <label>
         Password
       </label>
-      <input class="form-control" type="password">
+      <input
+        name="password"
+        class="form-control"
+        type="password" ng-model="vm.credentials.password"
+        required/>
     </div>
+    <div>{{ vm.error }}</div>
     <div class="text-center">
       <button class="btn btn-lg btn-default" type="submit">Submit</button>
     </div>

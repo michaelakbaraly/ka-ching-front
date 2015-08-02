@@ -67,8 +67,8 @@ gulp.task("test", function () {
     });
 });
 
-gulp.task('lint', function () {
-  return gulp.src(['js/**/*.js'])
+gulp.task("lint", function () {
+  return gulp.src(["js/**/*.js"])
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failOnError());
