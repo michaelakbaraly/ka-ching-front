@@ -4,7 +4,7 @@
 
   function friendsController(FriendsService) {
     var vm = this;
-    vm.getFriends = getFriends;
+    vm.getFriends = getFriends();
 
     function getFriends() {
       return FriendsService.getFriends();
