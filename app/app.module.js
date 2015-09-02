@@ -1,6 +1,6 @@
 (function () {
 
-    var app = angular.module("kaching", ["kaching.login", "kaching.friends", "ui.router", "templates"]);
+    var app = angular.module("kaching", ["kaching.login", "kaching.friends", "kaching.homepage", "ui.router", "templates"]);
 
     app.factory('authInterceptor', function ($rootScope, $q, $window) {
         return {
@@ -24,8 +24,14 @@
         $urlRouterProvider.otherwise("/");
         $httpProvider.interceptors.push('authInterceptor');
         $stateProvider
-            .state("homepage", {
+            .state("index", {
                 url: "/",
+                templateProvider: function ($templateCache) {
+                    return $templateCache.get('homepage/homepage.tpl.html');
+                }
+            })
+            .state("homepage", {
+                url: "/homepage",
                 templateProvider: function ($templateCache) {
                     return $templateCache.get('homepage/homepage.tpl.html');
                 }

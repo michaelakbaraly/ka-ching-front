@@ -4,15 +4,13 @@
 
     function friendsService($http) {
         return {
-            getFriends: function () {
-                $http({url: 'http://localhost:3000/api/restricted', method: 'GET'})
-                    .success(function (data, status, headers, config) {
-                        console.log(data.name); // Should log 'foo'
+            getFriends: function (callback) {
+                $http({url: 'http://localhost:3000/api/friends', method: 'GET'})
+                    .success(function (data) {
+                        callback(null, data);
                     })
-                    .error(function (data, status, headers, config) {
-
-                        console.error('rrr')
-                        alert('toto');
+                    .error(function () {
+                        callback('error');
                     });
             }
         }
